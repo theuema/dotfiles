@@ -1,0 +1,5 @@
+[
+    { "keys": ["super+shift+o"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+    { "keys": ["alt+k"], "command": "swap_line_up" },
+    { "keys": ["alt+j"], "command": "swap_line_down" },
+]

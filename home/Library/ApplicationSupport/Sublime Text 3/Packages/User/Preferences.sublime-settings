@@ -1,0 +1,69 @@
+{
+	"added_words":
+	[
+		"Facebook",
+		"Voldemort",
+		"Redis",
+		"prioritization",
+		"Graz",
+		"invariances",
+		"onboard",
+		"convolutional"
+	],
+	"auto_complete_triggers":
+	[
+		{
+			"characters": "<",
+			"selector": "text.html"
+		},
+		{
+			"characters": "\\",
+			"selector": "text.tex.latex"
+		}
+	],
+	"binary_file_patterns":
+	[
+		"*.map"
+	],
+	"color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
+	"detect_indentation": true,
+	"font_size": 14,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"ignored_words":
+	[
+		"Confounders",
+		"Convolutional",
+		"Couchbase",
+		"Forschungsgesellschaft",
+		"Gabor",
+		"Homoscedasticity",
+		"Intercultural",
+		"Keras",
+		"Mechatronics",
+		"Spearman",
+		"Tensorflow",
+		"Theuermann",
+		"Uncorrelatedness",
+		"Villach",
+		"Wikipedia",
+		"Xilinx",
+		"Zynq7",
+		"backpropagation",
+		"flashover",
+		"homoscedasticity",
+		"independency",
+		"outliner",
+		"outliners",
+		"pre",
+		"spam",
+		"tylervigen",
+		"yocto"
+	],
+	"tab_size": 4,
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"update_check": false
+}
