@@ -1,0 +1,36 @@
+# bashcheat
+
+local helptxt="
+# --------------------------------------- File Permissions
+Permission Groups                         : _ rwx rwx rwx = special permission flag, owner, group, all users
+Permission Types                          : read = 4, write = 2, execute = 1
+chmod                                     : permissions are edited by using the command chmod
+chmod -R (--recursive)                    : To recursively operate on all files and directories under a given directory 
+chmod 755 <file>                          : change permission of file to owner has full, group and all users have read and execute permission
+chmod 777 <file>                          : change permission of file to everyone can read, write & execute
+chmod +x <file.sh>                        : set executable permissions to script
+sudo chown -v root f/d                    : Change the Owner of a File/Directory on Linux Using the chown Command
+sudo chown -v :root f/d                   : Change the Group Ownership of a File/Directory on Linux Using the chown Command
+sudo chown -c root:root f/d               : Change the User and Group Ownership of a File/Directory on Linux Using the chown Command
+sudo chown -Rv root:root d                : Change the User and Group Ownership _Recursively_ on Linux Using the chown Command
+
+# --------------------------------------- Tools
+rsynch                  [example]         : 'rsync -ah /etc/fstab /home/user/download bkp' # Creates: 'bkp/fstab' and 'bkp/download'
+rsynch with fstructure  [example]         : 'rsync -ahR /etc/fstab /home/user/download bkp' # Creates: 'bkp/etc/fstab' and 'bkp/home/user/download' 
+pgrep                   [example]         : 'pgrep openconnect' # Returns the pid of the associated process
+ftp ftp.server.net                        : FTP server connect
+    put files/f.txt f.txt                 : Simple upload a single file to a FTP server
+    get f.txt files/f.txt                 : Simple download of a single file from a FTP server
+    put *.txt                             : Upload of multiple files to a FTP server
+    mdelete *.html                        : Delete all .html files in folder on FTP
+ncftp -u user -p pass srv.net             : NcFTP connect
+    open -u user srv.net                  : Open connection to ftp sever
+    put -R ~/Folder/                      : Send whole directory via FTP
+    help put / open / etc.                : Show help for command
+    rmdir -rf ~/Folder/                   : Delete folder
+"
+local cmd=$(echo $helptxt | eval "fzf --header='[cheat_bash:show]'")
+
+if [[ -n $cmd ]]; then
+    paste <(printf "%s" "$cmd")
+fi

@@ -1,0 +1,99 @@
+# git_utils
+# CLI commands for managing your git repository
+# &_x execute command with x parameter(s) (type: `utils param1 param2 ...`; alias needed
+# &_ execute command
+# >_ paste command to the command line
+# __ copy command to the clipboard
+
+local helptxt="
+# ----------------------------------------------------- Config
+git config --global user.name \"Korl Doe\"              >_  Config user name 
+git config --global user.email korldoe@pm.com           >_  Config email 
+git config --global core.editor emacs                   >_  Change the from \$EDITOR to e.g., emacs text editor for commit messages
+git config --global commit.template ~/.gitmessage.txt   >_  Add commit message template to git; add e.g., '~/.gitmessage.txt'
+git config --list --show-origin --show-scope            &_  Show git config files location
+
+# --------------------------------------------- Checkout, Fetch, Reset local, Delete
+git fetch origin                                &_  Pull the latest commits
+git checkout <branchname>                       >_  Checkout an existing branch 
+git checkout -b <newbranchname>                 >_  Create and checkout a new branch, forked from the current branch
+git checkout -b <newbranchname> <branchname>    >_  Create and checkout a new branch, forked from a specific branch
+git checkout .                                  &_  Remove unstaged tracked files
+git reset --hard                                &_  Remove staged and unstaged tracked files
+git reset --hard origin/branchname              >_  Discarding all local commits on branchname in order to make the local branch identical to the "upstream" 
+git reset --hard @{u}                           &_  Discarding all local commits in order to make the local branch identical to origin 
+git reset --hard HEAD~1                         &_  Discard the latest commit from local branch
+git clean -f                                    &_  Remove untracked, unstaged files (clean temp files)
+git clean -f --dry-run                          &_  Dry-run remove untracked, unstaged files (clean temp files)
+git clean -f -x                                 &_  Remove untracked, unstaged, and ignored files
+git clean -f -d                                 &_  Remove untracked, unstaged files and directories
+git clean -f -d --dry-run                       &_  Dry-run remove untracked, unstaged files and directories 
+git clean -f -X                                 &_  Remove ignored files
+git branch -d <branchname>                      >_  Delete local branch with name branchname
+git push -d origin <branchname>                 >_  Delete remote branch with name branchname
+git push origin :<branchname>                   >_  Delete remote branch with name branchname
+
+# --------------------------------------------- Reset remote
+git push origin HEAD --force                    &_  Discarding all remote commits in order to make the remote branch identical to the local branch  
+
+# --------------------------------------------- Stash away
+git stash -u                                    &_  Stash the changes in a dirty working directory away
+
+# ----------------------------------- Status, Add, Commit, Merge
+git status                            &_  Show the differences of tracked files against HEAD
+git add -u                            &_  Stage changes of tracked files only (including rm of files)
+git add .                             &_  Stage changes of all files including untracked files (but excluding rm of files)
+git add -A                            &_  Stage all changes (eq to 'git add .'; 'git add -u')
+git commit                            &_  Commit staged changes; add subject + body messages with your core.editor
+git commit -m \"subject message\"     >_  Commit staged changes single line message
+git push -u origin main               &_  Push to and set origin of main branch
+git push -u origin <branchname>       >_  Push to and set origin of branch with branchname
+git push                              &_  Push to origin of checked-out branch
+git merge <branchname>                >_  Merge branch with branchname into current branch
+git merge --no-ff <branchname>        >_  Merge branch with branchname into current branch without fast-forwarding
+git merge --squash <branchname>       >_  Squash all commits that are ahead into one and merge (tries ff if possible)
+git mergetool                         &_  Invoke GUI mergetool (needs pre-definition in .gitconfig)
+git tag <tagname>                     >_  Tag current commit with tagname
+git tag -a <tagname> -m               >_  Tag and annotate current commit with tagname and single line message
+git push origin <tagname>             >_  Push new tag to origin
+git push origin --tags                &_  Push all new tags to origin
+git tag -d <tagname>                  >_  Delete local tag
+git push origin --delete <tagname>    >_  Delete tag from origin
+
+# ----------------------------------- Show, List
+git log                               &_  Show commit logs (full)
+git shortlog                          &_  Show commit logs (short)
+git log --oneline                     &_  Show commit logs (oneline)
+git log --pretty=oneline              &_  Show commit logs (pretty oneline)
+git ls-files                          &_  List tracked files of the current branch
+git ls-tree -r main --name-only       &_  List tracked files of the main branch
+git branch -a                         &_  List all branches, local and remote
+
+"
+local cmd=$(echo $helptxt | eval "fzf --header='[git_utils:show]'")
+local sep
+
+if [[ -n $cmd ]]; then
+  if [[ $cmd == *"&_x"* ]]; then #execute alias with param(s)
+    cmd=$(echo ${cmd} | awk '{print $1}')
+    eval ${cmd}
+  elif [[ $cmd == *"&_"* ]]; then #execute
+    sep="&_"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\[alias\]//g' | sed -e 's/\ *$//g')
+    eval ${cmd}
+  elif [[ $cmd == *"__"* ]]; then #clip
+    sep="__"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\ *$//g')
+    if [[ "$(uname -a | awk '{print $1}')" == "Darwin" ]]; then
+        echo -n ${cmd} | pbcopy #`echo -n` removes newline
+    else
+      echo -n ${cmd} | xclip -selection clipboard
+    fi
+  elif [[ $cmd == *">_"* ]]; then #print to cmdl
+    sep=">_"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\ *$//g')
+    print -z ${cmd}
+  else #print
+    paste <(printf "%s" "$cmd")
+  fi
+fi

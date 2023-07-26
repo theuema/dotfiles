@@ -1,0 +1,9 @@
+# [b]rew [u]uninstall formula(s) with Fzf
+
+local uninst=$(brew leaves | eval "fzf --header='[formula:uninstall]'")
+
+if [[ -n $uninst ]]; then
+  for f in $(echo $uninst)
+    do brew uninstall $f
+  done
+fi

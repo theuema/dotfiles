@@ -1,0 +1,80 @@
+# docker_utils
+# general docker CLI utils
+# &_x execute command with x parameter(s) (type: `utils param1 param2 ...`; alias needed)
+# &_ execute command
+# >_ paste command to the command line
+# __ copy command to the clipboard
+
+# ultimate docker cheatsheet: https://dockerlabs.collabnix.com/docker/cheatsheet/
+
+local helptxt="
+# --------------------------------------------- General
+docker start -ai <container_name>               >_  Start and attach to the interactive shell of an already existing container
+Ctrl+p then Ctrl+q                              Detach from a container without stopping it
+docker system prune                             &_  Removes all stopped containers, dangling images, and unused networks
+docker system prune -a                          &_  Remove all unused images not just the dangling ones
+docker exec --help                              >_  Run command in running (detached) container
+
+# --------------------------------------------- Dockerfile
+docker build -t <image_name> <dockerfile>       >_  Build a docker image from a dockerfile
+
+# --------------------------------------------- Containers
+docker container ls                             &_  List of all containers
+docker container ls -a                          &_  List of stopped containers
+docker ps                                       &_  List of all containers
+docker ps -a                                    &_  List of stopped containers
+docker container rm <container_id>              >_  Remove container with ID
+docker attach <container_id>                    >_  Attaching to a container; Starting a terminal session within the context of that container
+docker exec -it <container_id> /bin/bash        >_  Attaching to a container; Attach multiple shell sessions to a container
+docker exec -it <container_id> /bin/sh          >_  Attaching to a container; Attach multiple shell sessions to a container
+docker run -d --name <name> <image_name>        >_  Run or more accurate 'create' container in background and print container ID
+docker start <container_id>                     >_  Relaunch your container, it will be detached by default
+
+# --------------------------------------------- Images
+docker pull <image_name>                        >_  Pull image from docker hub or nvidia catalog
+docker image ls                                 &_  A list of all images
+docker images                                   &_  A list of all images
+docker image rm <image_name_or_id>              >_  Delete a docker image
+docker commit <container_name> <image_name>     >_  Commit a state of an container to a new image
+docker save <image_name> | gzip > name.tar.gz   >_  Save image (that is stored in /var/lib/docker see 'docker info') to a compressed file
+gunzip -c name.tar.gz | docker load             >_  Import saved image to docker; Now, 'docker run' to create container
+
+# --------------------------------------------- Volumes
+docker volume create --name <volume_name>       >_  Creates a new docker managed volume
+docker volume rm <volume_name>                  >_  Delete docker volume
+
+# --------------------------------------------- Context 
+docker context use <context_name>               >_ Install docker context locally, then switch to use SSH container
+
+# --------------------------------------------- Create docker container example scaled yolo with pytorch
+# https://github.com/WongKinYiu/ScaledYOLOv4/tree/yolov4-large
+nvidia-docker run --name yolov4 -it -v /home/theuema/ML:/ML/ --shm-size=64g nvcr.io/nvidia/pytorch:20.06-py3 
+
+"
+local cmd=$(echo $helptxt | eval "fzf --header='[docker_utils:show]'")
+local sep
+
+if [[ -n $cmd ]]; then
+  if [[ $cmd == *"&_x"* ]]; then #execute alias with param(s)
+    cmd=$(echo ${cmd} | awk '{print $1}')
+    eval ${cmd}
+  elif [[ $cmd == *"&_"* ]]; then #execute
+    sep="&_"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\[alias\]//g' | sed -e 's/\ *$//g')
+    eval ${cmd}
+  elif [[ $cmd == *"__"* ]]; then #clip
+    sep="__"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\ *$//g')
+    if [[ "$(uname -a | awk '{print $1}')" == "Darwin" ]]; then
+        echo -n ${cmd} | pbcopy #`echo -n` removes newline
+    else
+      echo -n ${cmd} | xclip -selection clipboard
+    fi
+  elif [[ $cmd == *">_"* ]]; then #print to cmdl
+    sep=">_"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\ *$//g')
+    print -z ${cmd}
+  else #print
+    paste <(printf "%s" "$cmd")
+  fi
+fi

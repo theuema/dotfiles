@@ -1,0 +1,9 @@
+# [b]rew [i]nstall formula(s) with Fzf
+
+local inst=$(brew formulae | eval "fzf --header='[formula:install]'")
+
+if [[ -n $inst ]]; then
+  for f in $(echo $inst)
+    do brew install $f
+  done
+fi

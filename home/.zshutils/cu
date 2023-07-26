@@ -1,0 +1,9 @@
+# [c]ask(s) [u]uninstall with Fzf
+
+local uninst=$(brew list --cask | eval "fzf --header='[cask:uninstall]'")
+
+if [[ -n $uninst ]]; then
+  for c in $(echo $uninst)
+    do brew uninstall $c
+  done
+fi

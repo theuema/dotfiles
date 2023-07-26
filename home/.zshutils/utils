@@ -1,0 +1,169 @@
+# terminal_utils
+# general CLI bash utils
+# &_x execute command with x parameter(s) (type: `utils param1 param2 ...`; alias needed)
+# &_ execute command
+# >_ paste command to the command line
+# __ copy command to the clipboard
+
+local helptxt="
+# ----------------------------------- General linux
+cat /etc/os-release                   &_  Linux: Show OS release
+cat /etc/lsb-release                  &_  Linux: Show OS release 
+cat /etc/*release                     &_  Linux: Show full OS release
+hostnamectl                           &_  Linux: Show OS details
+lsb_release -a                        &_  Linux: Show OS details
+cat /etc/issue                        &_  Linux: Show OS version
+uname -r                              &_  Show kernel
+uname -a                              &_  Show all the uname infos
+hostname                              &_  Show (or set) the host name
+lsblk                                 &_  List block devices
+lsusb                                 &_  List USB devices (On Mac: 'brew install lsusb')
+who                                   &_  Show who is logged on (terminal sessions; users on server)
+w                                     &_  Show who is logged on and what they are doing (terminal sessions; users on server)
+adjustclock               [alias]     &_  Arch: Adjusts the clock when e.g., dualbooting with with windows
+getent group                          &_  List all groups present on the system 
+getent group <groupname>              >_  List all members of a specific group
+groups                                >_  List groups the current user belongs to
+groups <username>                     >_  List groups a specific user is a member of
+getent passwd | awk -F: '{ print $1}' &_  List all users present on the system
+awk -F: '{ print $1}' /etc/passwd Z   &_  Fuzzy search all users present on the system
+getent passwd {1000..60000}           &_  List all normal users present on the system with details 
+lsmod Z                               &_  Fuzzy search kernel modules currently loaded
+ps ax Z                               &_  Fuzzy search processes running (use htop for interactive)
+modinfo <modulename>                  >_  Show info of kernel module
+modprobe <modulename>                 >_  Load a kernel module
+md5filesindir                         &_  Show MD5 hash from every file in dir
+countfilesdir <dirpath>   [alias]     &_  Count number of files in a specific dir
+biggest <int>             [alias]     &_x List the x biggest files or dirs in terms of fsize in current dir
+sizessort                 [alias]     &_  List and sort files and dirs in terms of fsize on disk
+sizeof <(f)path>          [alias]     &_x List human-readable size of a specific file or dir
+lssubdir                  [alias]     &_  List files from every subdir of current dir
+dfh                       [alias]     &_  Show filesystem storage
+dfht                      [alias]     &_  Show filesystem storage and fstypes
+dmesg | grep -i <pattern>             >_  Check for dmesg logs - display or control the kernel ring buffer.
+sudo udevadm monitor                  >_  Linux: Send control commands or test the device manager
+## ---------------------------------- symlink
+ln -s <f|d_path> <symlink_path>       >_  Create a symlink
+ln -sfn <f|d_path> <symlink_path>     >_  Update a symlink
+## ---------------------------------- batch renaming
+prefix_all <prefix>       [alias]     &_  Add prefix to all files and subdirs of current dir
+lowercase_all             [alias]     &_  Rename all files and subdirs of current dir to lowercase file/dir names
+## ---------------------------------- create, rm
+mkdirp <dirname>          [alias]     &_x Create a new dir and make parent dirs as needed
+mkdird <dirname>          [alias]     &_x Create a new dir and append todays date
+mkdirs <int>              [alias]     &_x Create numerous directories
+rmemptydirs               [alias]     &__ Remove empty dirs recursively from this dir downwards
+rmrfrecursive <name>      [alias]     &_x Remove files or dirs recursively from this dir downwards (e.g.: ".DS_Store", "./git")
+## ---------------------------------- find
+findin <path> <name>      [alias]     &_x Find -name in given path
+lisapgrep <pattern>       [alias]     &_x Grep for a file or dir in the current dir
+grepfiles <pattern>       [alias]     &_x Grep for pattern in files of the current dir
+
+# --------------------------------------- archives
+targz <filepath.tar.gz>       [alias]     &_x Unzip and extract from file
+tartar <filepath.tar>         [alias]     &_x Extract from file
+tarnew <n.tar.gz> <(f)path>   [alias]     &_x Create archive from dir or file
+unrarmultip                   [alias]     &_  Unrar mulitple .rar files in current folder (in place)
+unrarmultsubdir               [alias]     &_  Unrar mulitple .rar files in current folder (to subdir)
+unrarpw <pw> <n.rar>          [alias]     &_x Unrar password protected rar archive
+unzipsubdir <n.zip>           [alias]     &_x Unzip given .zip file (to subdir)
+merge001ip <*.*.001>          [alias]     &_x Merge *.001 files to one (in place)
+merge001 <*.*.001> <dirpath>  [alias]     &_x Merge *.001 files to one (to subdir)
+
+# ------------------------------------- tools
+tree                                    &_  List files and directories
+tree -a                                 &_  List all files and directories
+tree -d                                 &_  List directories only
+treelvl <int>               [alias]     &_x List files and directories to a certain depth level
+treedlvl <int>              [alias]     &_x List directories to a certain depth level
+dos2unix <fpath>            [alias]     &_x Convert DOS files to Unix files in-place (newline, ^M, \'n)
+dos2unixfindir <dirpath>    [alias]     &_x Convert all files to Unix files in dir
+coden <(f)path>             [alias]     &_x Open file or dir in a new VSCode window
+codediff <fpath> <fpath>    [alias]     &_x Diff two files using in a new VSCode window
+
+# ------------------------------------------------------- mounts, remotes
+ulremote <l(f)path> <user> <host> <rdirpath>  [alias]     &_x Upload file or dir to remote directory (rsync)
+dlremote <user> <host> <r(f)path> <ldirpath>  [alias]     &_x Download file or dir to local directory (rsync)
+scpcp <user> <host> <r(f)path> <ldirpath>     [alias]     &_x Download file or dir to local directory (scp)
+mountremotehome <user> <pass>                 [alias]     &_x Mount $\HOME directory of a remote
+umountremote                                  [alias]     &_  Umount remote currently mounted
+mountcifsdir <//domain.example.at/folder/>    [alias]     &_x Mount remote samba directory
+ftpto <user> <pass> <ftp.domain>              [alias]     &_x Connect to ftp server
+## ------------------------------------------ mounts defined in fstab
+sudo mount -t cifs /mnt/org_kunden_ct         &_  Mount '//domain.example.at/dfs_stamm/org_kunden_ct'
+
+# ------------------------------------- Python venv
+pyenv version                           &_  Show the current Python version(s) and its origin
+pyenv versions                          &_  List all Python versions available to pyenv
+pyenv commands                          &_  List all available pyenv commands
+pyenv which <executable>                >_  Display the full path to an executable
+pyenv which python3                     &_  Display the full path to the Python3 executable used
+which python3                           &_  Sometimes deviates to pyenv which due to using 'shrims'
+pyenv install -l | grep ' 3\.[[678]]'   >_  Regex Python versions for installation
+pyenv install -l Z                      &_  Use fzf to search for Python version
+pyenv install <vNum>                    >_  Install specific python version found with -l
+lisap $HOME/.pyenv/versions             &_  See installed Python version
+ls $HOME/.pyenv/versions                &_  See installed Python version minimal
+rm $HOME/.pyenv/versions/<vNum>         >_  Remove python version
+pyenv global                            &_  Show the global Python version(s)
+pyenv global <vNum>                     >_  Set the global Python version(s)
+pyenv local                             &_  Show the local application-specific Python version(s)
+pyenv local <vNum>                      >_  Set the local application-specific Python version(s)
+pyenv virtualenv <vNum> <venvname>      >_  Create a Python virtualenv using the pyenv-virtualenv plugin
+pyenv activate <venvname>               >_  Activate virtual environment
+pyenv deactivate                        &_  Deactivate virtual environment
+
+# --------------------------------- Network
+ip addr show                        &_  Linux: Show IP address and network devices; Network
+ifconfig eth0                       &_  Linux: List actual ip address assigned to the interface
+/sbin/ifconfig eth0                 &_  Linux: List actual ip address assigned to the interface
+ifconfig en0                        &_  Mac: List actual ip address assigned to the interface
+/sbin/ifconfig en0                  &_  Mac: List actual ip address assigned to the interface
+ip -c link                          &_  Linux: List all NICs
+ip link                             &_  Linux: List all NICs
+ifconfig -s -a                      &_  Linux: Display Ethernet cards including network alias
+netstat -i                          &_  Display Ethernet cards including network alias
+route -n                            &_  Linux: Find default gateway
+ip route show                       &_  Linux: Find default gateway
+netstat -rn                         &_  Find default gateway
+curl checkip.amazonaws.com          &_  See external (public) IP address
+curl ident.me                       &_  See external (public) IP address
+arp -na | grep -i "b8:27:eb"        >_  Determining Raspberry Pi's IP address.
+XYZ TEST BLA                        __  copy to clipboard
+"
+local cmd=$(echo $helptxt | eval "fzf --header='[terminal_utils:show]'")
+local sep
+
+if [[ -n $cmd ]]; then
+  if [[ $cmd == *"&_x"* ]]; then #execute alias with param(s)
+    cmd=$(echo ${cmd} | awk '{print $1}')
+    eval ${cmd}
+  elif [[ $cmd == *"&_"* ]]; then #execute
+    sep="&_"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\[alias\]//g' | sed -e 's/\ *$//g')
+    eval ${cmd}
+  elif [[ $cmd == *"__"* ]]; then #clip | pbcopy
+    sep="__"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\ *$//g')
+    if [[ "$(uname -a | awk '{print $1}')" == "Darwin" ]]; then
+        echo -n ${cmd} | pbcopy #`echo -n` removes newline
+    else
+      echo -n ${cmd} | xclip -selection clipboard
+    fi
+  elif [[ $cmd == *">_"* ]]; then #print to cmdl
+    sep=">_"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\ *$//g')
+    print -z ${cmd}
+  else #print
+    paste <(printf "%s" "$cmd")
+  fi
+fi
+
+#local cmd=$(echo $helptxt | eval "fzf --header='[tmuxcheat:show]'" | awk -F"_" '{print $1}' | sed -e 's/\ *$//g')
+# sed replacement: xargs (echo -n)
+# be sure to use the proper awk separator, e.g., -F"_" 
+
+# execute command
+#if [[ -n $cmd ]]; then
+#  eval ${cmd}
+#fi

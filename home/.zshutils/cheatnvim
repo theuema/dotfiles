@@ -1,0 +1,219 @@
+local helptxt='
+# ------------------------- General
+Space       [mapleader]     Current VIM Leader Key
+K                           Open man page for word under the cursor
+u                           Undo 
+<C-r>                       Redo changes which were undone (undo the undos)
+U                           Restore (undo) when you actually are in the changed line 
+.                           Generally repeat a previous change, at the current cursor position!
+:set expandtab?             See the current value of an option, just add a "?"
+:reg[isters]                Show registers content
+:h[elp] keyword             Open help for keyword
+:help diw                   Open help for keystroke "delete inner word"
+:sav[eas] file              Save file as
+:clo[se]                    Close current pane
+:ter[minal]                 Open a terminal window
+:w                          Write (save) the file
+:Ex                         (Ex)ploring the file directory, called Explorer (other variants :E, :Sex (S)plitwindow explore)
+Shift+D (in :Ex)            Delete a certain file
+:Rename NAME                A vim script to rename the current file
+:colo[rscheme]              Change colorscheme
+
+# ------------------------- Cursor movement
+h                           Move cursor left
+j                           Move cursor down
+4j                          Move cursor down 4 lines (prefix every cursor movement with a number)
+k                           Move cursor up
+l                           Move cursor right
+H                           Move to top of screen
+M                           Move to middle of screen
+L                           Move to bottom of screen
+w                           Jump forwards to the start of a word
+Alt + Right                 Map to w - jump forwards to the start of a word
+W                           Jump forwards to the start of a word (words can contain punctuation)
+e                           Jump forwards to the end of a word
+E                           Jump forwards to the end of a word (words can contain punctuation)
+b                           Jump backwards to the start of a word
+Alt + Left                  Map to b - jump forwards to the start of a word
+B                           Jump backwards to the start of a word (words can contain punctuation)
+%                           Move to matching character (default supported pairs: "()", "{}", "[]" - use :h matchpairs in vim for more info)
+0                           Jump to the start of the line
+^                           Jump to the first non-blank character of the line
+$                           Jump to the end of the line
+g_                          Jump to the last non-blank character of the line
+gg                          Go to the first line of the document
+G                           Go to the last line of the document
+5gg or 5G                   Go to line 5
+fx                          Jump to next occurrence of character x
+tx                          Jump to before next occurrence of character x
+Fx                          Jump to previous occurence of character x
+Tx                          Jump to after previous occurence of character x
+;                           Repeat previous f, t, F or T movement
+,                           Repeat previous f, t, F or T movement, backwards
+}                           Jump to next paragraph (or function/block, when editing code)
+{                           Jump to previous paragraph (or function/block, when editing code)
+zz                          Center cursor on screen
+<C-e>                       Move screen down one line (without moving cursor)
+<C-y>                       Move screen up one line (without moving cursor)
+<C-b>                       Move back one full screen
+<C-f>                       Move forward one full screen
+<C-d>                       Move forward 1/2 a screen
+<C-u>                       Move back 1/2 a screen
+
+# ------------------------- Copy/delete (in)lines
+o                           Add empty line after the cursor
+O                           Add empty line before the cursor
+dt(                         Delete to next occurence of letter "("
+cc                          Change (replace) entire line
+C                           Change (replace) to the end of the line
+c$                          Change (replace) to the end of the line
+ciw                         Change (replace) entire word
+cw                          Change (replace) to the end of the word
+s                           Delete character and substitute text
+r                           Replace a single character
+R                           Replace more than one character, until ESC is pressed
+J                           Join line below to the current one with one space in between
+kJ                          Go line up and join the line below with the current line
+gJ                          Join line below to the current one without space in between
+yy                          Yank (copy) a line
+2yy                         Yank (copy) 2 lines 
+y$                          Yank to the end of the line
+p                           Put (paste) the clipboard after cursor
+P                           Put (paste) before cursor
+yyp                         Yank (copy) a line and paste the yank after the cursor (new line) / copy line
+dd                          Delete (cut) a line
+2dd                         Delete (cut) 2 lines
+dw                          Delete (cut) the characters from the cursor position to the start of the next word
+diw                         Delete inner word
+daw                         Delete a word (also deletes all spaces after and before the word)
+D                           Delete (cut) to the end of the line
+d$                          Delete (cut) to the end of the line
+x                           Delete (cut) character 
+
+# ------------------------- Copy/Paste/Delete
+ggdG                        Delete all text in a file
+dG                          Delete all text from cursor to EOF
+:set paste                  To paste in edit mode; Prevent Vim from re-tabbing your code
+:set nopaste                Return to normal behaviour
+:10,15d                     Delete lines from line 10 to 15
+:81,91y                     Yank lines from line 81 to 91
+:81,91+y                    Yank lines from line 81 to 91 into the system clipboard register (vim must have clipboard support)
+<C-r>*                      In insert mode: paste the contents of the clipboard
+<C-r>"                      In insert mode: (the unnamed register) inserts the last delete or yank
+:h i_ctrl-r                 Find the pasting options in vim help
+:!rm                        Delete a file outside of vim
+
+# ------------------------- Registers
+:reg[isters]                Show registers content
+"xy                         Yank into register x
+"xp                         Paste contents of register x
+<leader>yp      [KBind]     "YankPaste": Past last yank from register 0, which is not overwritten by a `dd`
+"+y                         Yank into the system clipboard register (only works with vim --version | grep clipboard = + clipboard)
+"+p                         Paste from the system clipboard register (only works with vim --version | grep clipboard = + clipboard)
+
+# ------------------------- Search
+/pattern                    Search for pattern
+?pattern                    Search backward for pattern
+<leader>h       [KBind]     Remove highlighting from the last search until the next search
+\vpattern                   "very magic" pattern: non-alphanumeric characters are interpreted as special regex symbols (no escaping needed)
+n                           Repeat search in same direction
+N                           Repeat search in opposite direction
+:%s/old/new/g               Replace all old with new throughout file
+:%s/old/new/gc              Replace all old with new throughout file with confirmations
+<C-h>           [KBind]     Remove highlighting of search matches
+:noh[lsearch]               Remove highlighting of search matches
+:e **/test/Suite.java       Search files w/o fzf
+:r! find . -type f          Search files w/o fzf
+:grep -R "x.*" /path        Searches files like the grep command, results are in a "quickfix-list"
+:vimgrep -R "x.*" /path     Searches files using VIM-compatible Regex, , results are in a "quickfix-list"
+## ------------------------ Search and Replace (Change several occurrences all at once)
+/pattern                    First, search pattern to see occurances in the file; you can also cycle through by pressing n
+ciw                         Change inner word as needed; press ESC; go to next occurance with n
+.                           Apply the change to the next occurence or skip with n
+cgn                         Select and edit the next occurence or just cycle through then use .
+
+# ------------------------- Working with multiple files
+:e[dit] file                Edit a file in a new buffer
+:bn[ext]                    Go to the next buffer
+:bp[revious]                Go to the previous buffer
+:b#                         Go to previously opened buffer
+<C-Down>        [KBind]     Go to the next buffer
+<C-Up>          [KBind]     Go to the previous buffer
+<C-S-Up>        [KBind]     Go to previously open buffer
+:bd[elete]                  Delete a buffer (close a file)
+:Bonly          [Command]   Delete all buffers except the current
+<leader>bo      [KBind]     Delete all buffers except the current
+:b[uffer]#                  Go to a buffer by index
+:b[uffer] file              Go to a buffer by file
+:ls or :buffers             List all open buffers
+:sp[lit] file               Open a file in a new buffer and split window
+:vs[plit] file              Open a file in a new buffer and vertically split window
+:vert[ical] ba[ll]          Edit all buffers as vertical windows
+:tab ba[ll]                 Edit all buffers as tabs
+:tabnew <filename>          Open existing or new file in Tab
+:tabn[ext]      | gt        Tab next
+:tabp[revious]  | gT        Tab previous
+<C-Right>       [KBind]     Tab next
+<C-Left>        [KBind]     Tab previous
+## ------------------------ Window management
+<C-w>s                      Split window
+<C-w>v                      Split window vertically
+<C-w>w                      Switch windows
+<C-w>q                      Quit a window
+<C-w>x                      Exchange current window with next one
+<C-w>=                      Make all windows equal height & width
+<C-w>h                      Move cursor to the left window (vertical split)
+<C-w>l                      Move cursor to the right window (vertical split)
+<C-w>j                      Move cursor to the window below (horizontal split)
+<C-w>k                      Move cursor to the window above (horizontal split)
+<C-l>           [KBind]     Switch focus to left window
+<C-h>           [KBind]     Switch focus to right window
+
+# ------------------------- Insert mode - inserting/appending text
+i                           Insert before the cursor
+I                           Insert at the beginning of the line
+a                           Insert (append) after the cursor
+A                           Insert (append) at the end of the line
+o                           Append (open) a new line below the current line
+O                           Append (open) a new line above the current line
+ea                          Insert (append) at the end of the word
+<C-h>                       Delete the character before the cursor during insert mode
+<C-w>                       Delete word before the cursor during insert mode
+<C-j>                       begin new line during insert mode
+<C-t>                       Indent (move right) line one shiftwidth during insert mode
+<C-d>                       De-indent (move left) line one shiftwidth during insert mode
+<C-n>                       Insert (auto-complete) next match before the cursor during insert mode
+:help i_CTRL-N              See Vim"s documentation on auto-completion functionality.
+<C-p>                       Insert (auto-complete) previous match before the cursor during insert mode
+<C-r>x                      Insert the contents of register x
+<C-r>*                      Paste the contents of the clipboard
+<C-r>"                      (the unnamed register) inserts the last delete or yank
+<C-o>                       Used to execute a normal command without leaving the insert mode
+Esc                         Exit insert mode
+
+# ------------------------- Marking text
+v                           Start visual mode, mark lines, then do a command (like y-yank) 
+V                           Start linewise visual mode
+<C-v>                       Start visual block mode 
+aw                          Mark a word 
+ab                          A block with ()
+aB                          A block with {}
+at                          A block with <> tags
+ib                          Inner block with ()
+iB                          Inner block with {}
+it                          Inner block with <> tags 
+
+# ------------------------- NvimTree 
+<leader>t       [KBind]     Toggle NvimTree
+:help nvim-tree-mappings    See current/default NvimTree keymappings
+
+# ------------------------- Tabs and spaces
+F11   #TODO                 Toggle the tab and spaces syntax
+F12             [KBind]     Toggle between the usage of tabs and spaces
+
+'
+local cmd=$(echo $helptxt | eval "fzf --header='[cheat_nvim:show]'")
+
+if [[ -n $cmd ]]; then
+    paste <(printf "%s" "$cmd")
+fi

@@ -1,0 +1,51 @@
+# fzfcheat
+
+local helptxt="
+# --------------------------------- _Pipe to Fzf_ alias
+alias -g Z='| fzf'                  Usage e.g.: 'npm search react Z'
+
+# --------------------------------- Fzf
+vim \$(fzf)                         Use the output of fzf as an argument for another command
+                                    fzf can read a list from STDIN, process it, and write the selected items to STDOUT, things become more interesting when fzf is run in conjunction with other commands.
+
+echo $ PATH | tr ':' '\n' | fzf     show PATH folders
+npm search react | fzf              npm search
+
+# --------------------------------- Key Bindings
+<Tab>                               Select multiple files
+<Shift-TAB>                         Deselect selected file(s)
+Ctrl-t                              Paste the selected (also multiple!) files and directories onto the command line
+vim Ctrl-t                          Open a file in vim
+rm Ctrl-t <Tab>                     Delete multiple files
+Ctrl-r                              Paste the selected command from history onto the command line
+                                    Sorting is disabled by default to respect chronological ordering. You can dynamically enable sorting by pressing CTRL-R again
+Opt-c | Alt-c                       Cd into the selected directory without typing cd
+
+# --------------------------------- Fuzzy completion alias
+export FZF_COMPLETION_TRIGGER='**'  Change ** to whatever you like
+                                    The fuzzy completion is aware of the command that precedes it, meaning the suggestions can change based on what you are trying to do
+cd **<TAB>                          Directories under current directory (single-selection)
+vim ~/**<TAB>                       Files under your home directory (multi-selection)
+ssh **<TAB>                         Host names are extracted from /etc/hosts and ~/.ssh/config
+unset **<TAB>                       Environment variables
+export **<TAB>                      Exports
+unalias **<TAB>                     Aliases
+kill -9 <TAB>                       Can select multiple processes with <TAB> or <Shift-TAB> keys
+
+
+# --------------------------------- Search syntax
+                                    Fzf supports special tokens that change the way search terms are processed [Search syntax]
+'wild:                              Exact match, return items that include wild [Search syntax]
+^music:                             Prefix-exact-match, return items that start with music [Search syntax]
+.mp3$:                              Suffix-exact-match, return items that end with .mp3 [Search syntax]
+!fire:                              Inverse-exact-match, return items that do not include fire [Search syntax]
+!^music:                            Inverse-prefix-exact-match, return items that do not start with music [Search syntax]
+!.mp3$:                             Inverse-suffix-exact-match, return items that do not end with .mp3 [Search syntax]
+                                    Note that SPACE acts as an AND operator and | as an OR [Search syntax]
+^music mp3$ | wav$ | flac$          Matches entries that start with music and end with either mp3, wav, or flac [Search syntax]
+"
+local cmd=$(echo $helptxt | eval "fzf --header='[cheat_fzf:show]'")
+
+if [[ -n $cmd ]]; then
+    paste <(printf "%s" "$cmd")
+fi

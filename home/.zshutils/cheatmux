@@ -1,0 +1,101 @@
+# cheat_tmux
+# leader'key' and KBindings defined in .tmux.conf
+# &_x execute command with x parameter(s) (type: `utils param1 param2 ...`; alias needed)
+# &_ execute command
+# >_ paste command to the command line
+# __ copy command to the clipboard
+
+# deprications
+# tmux attach -t base || tmux new -s base   &_  Start a new or attach to a session with the name base
+
+local helptxt="
+# --------------------------------------- Terminal cmd 
+tmux list-keys | less                     &_  List all commands
+man tmux                                  &_  Tmux manpage
+tmux                                      &_  Start a new session
+tmux new-session -A -s base               &_  Start a new or attach to a session with the name base 
+tmux new -s <sessionname>                 >_  Start a new session and choose session name
+tmuxnew <sessionname>       [alias]       &_x Start a new session and choose session name (or attach to existing)
+tmux a                                    &_  (Re)attach to the most recently created session
+tmux ls                                   &_  Show all sessions
+tmux info                                 &_  Show every session, window, and pane
+tmux kill-session -t base                 &_  Kill session base
+tmux kill-session -t <sessionname>        >_  Kill session with name <sessionname>
+tmux kill-session -a                      &_  Kill all sessions but the current 
+
+# ----------------------- Tmux <leader> key
+C-Space                Current Tmux Leader Key (set in .tmux.conf)
+C-b                    Default Tmux Leader Key
+
+# ----------------------- Inside Tmux Session
+C-<leader>
+:new                     __ Start a new session
+:new -s mysession        __ Start a new session with the name mysession
+
+## ---------------------- General & Help   
+<C-Space>:                         Go to command mode in Tmux
+<C-Space>?                         List all commands
+<C-Space>r                         Manually reload Tmux config
+<C-Space>:                         Open command line for Tmux commands
+<C-Space>[                         Simply scroll with nav keys in Tmux
+
+## ---------------------- Tmux Sessions
+<C-Space>d                         Detach from Tmux session
+<C-Space>$                         Rename Tmux session
+<C-Space>s                         Show all Tmux sessions
+
+## ---------------------- Tmux Windows
+<C-Space>c                         Create Tmux window
+<C-Space>&                         Close current Tmux window
+<C-Space>p                         Previous Tmux window
+<C-Space>n                         Next Tmux window
+<C-Space>0...9                     Switch/select Tmux window by number
+
+## ---------------------- Tmux Panes
+<C-Space>w                         Show all Tmux panes
+<C-Space>;                         Toggle last active Tmux pane
+<C-Space>-                         Split Tmux pane horizontally (custom)
+<C-Space>|                         Split Tmux pane vertically (custom)
+<C-Space>Spacebar                  Toggle between Tmux pane layouts
+<C-Space>q                         Show Tmux pane numbers
+<C-Space>q 0...9                   Switch/select Tmux pane by number
+<C-Space>!                         Convert Tmux pane into a window
+<C-Space>+ up/down                 Resize current Tmux pane height
+<C-Space>+ left/right              Resize current Tmux pane width
+<C-Space>x                         Close current Tmux pane
+<C-Space>f                         Search for a pane by name
+
+## ---------------------- Pane switch
+Shift-up      [KBind]     Switch to upper pane
+Shift-down    [KBind]     Switch to lower pane
+Shift-left    [KBind]     Switch to left pane
+Shift-right   [KBind]     Switch to right pane
+
+"
+local cmd=$(echo $helptxt | eval "fzf --header='[cheat_tmux:show]'")
+local sep
+
+if [[ -n $cmd ]]; then
+  if [[ $cmd == *"&_x"* ]]; then #execute alias with param(s)
+    cmd=$(echo ${cmd} | awk '{print $1}')
+    eval ${cmd}
+  elif [[ $cmd == *"&_"* ]]; then #execute
+    sep="&_"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\[alias\]//g' | sed -e 's/\ *$//g')
+    eval ${cmd}
+  elif [[ $cmd == *"__"* ]]; then #clip
+    sep="__"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | xargs echo -n)
+    if [[ "$(uname -a | awk '{print $1}')" == "Darwin" ]]; then
+        echo -n ${cmd} | pbcopy #`echo -n` removes newline
+    else
+      echo -n ${cmd} | xclip -selection clipboard
+    fi
+  elif [[ $cmd == *">_"* ]]; then #print to cmdl
+    sep=">_"
+    cmd=$(echo ${cmd} | awk -F"${sep}" '{print $1}' | sed -e 's/\ *$//g')
+    print -z ${cmd}
+  else #print
+    paste <(printf "%s" "$cmd")
+  fi
+fi

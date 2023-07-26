@@ -1,0 +1,9 @@
+# [c]ask(s) [i]nstall with Fzf
+
+local inst=$(brew casks | eval "fzf --header='[cask:install]'")
+
+if [[ -n $inst ]]; then
+  for c in $(echo $inst)
+    do brew install --cask $c
+  done
+fi
