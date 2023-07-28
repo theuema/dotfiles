@@ -1,5 +1,49 @@
 {
-    "editor.fontFamily": "MesloLGM Nerd Font Propo, Menlo, Monaco, 'Courier New', monospace",
+    "workbench.colorTheme": "Cobalt Next",
+    /* terminal */
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        },
+        "zsh (2)": {
+            "path": "/usr/bin/zsh"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh (2)",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
     "editor.fontSize": 14,
-    "workbench.colorTheme": "Default Dark+"
+    "editor.multiCursorModifier": "ctrlCmd",
+    "python.autoComplete.addBrackets": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.defaultInterpreterPath": "/Users/mario.theuermann/.pyenv/versions/3.11.4/envs/i4SEE-sandbox",
+    /* Latex */
+    "latex-workshop.latex.outDir": "%DIR%/build",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.autoBuild.run": "never",
+    "editor.accessibilitySupport": "off",
+    "editor.wordWrap": "on",
+    "cSpell.userWords": [
+        "photogrammetric"
+    ],
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "settingsSync.ignoredExtensions": [],
+    /* VIM emulation */
+    // "vim.vimrc.enable": true
 }
