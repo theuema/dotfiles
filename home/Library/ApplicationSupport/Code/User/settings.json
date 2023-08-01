@@ -19,18 +19,14 @@
         "pwsh": {
             "path": "pwsh",
             "icon": "terminal-powershell"
-        },
-        "zsh (2)": {
-            "path": "/usr/bin/zsh"
         }
     },
-    "terminal.integrated.defaultProfile.linux": "zsh (2)",
-    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.fontFamily": "MesloLGM Nerd Font",
     "editor.fontSize": 14,
     "editor.multiCursorModifier": "ctrlCmd",
     "python.autoComplete.addBrackets": true,
     "python.analysis.completeFunctionParens": true,
-    "python.defaultInterpreterPath": "/Users/mario.theuermann/.pyenv/versions/3.11.4/envs/i4SEE-sandbox",
     /* Latex */
     "latex-workshop.latex.outDir": "%DIR%/build",
     "latex-workshop.view.pdf.viewer": "tab",

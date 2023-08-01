@@ -95,34 +95,18 @@ FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
     # See `brew info zsh-completions`
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
-# source oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
 # ----------------------------------- User configuration
 ## Store gitconfig in ~/.config/git/config
 export XDG_CONFIG_HOME=$HOME/.config
-## Brew lib export
-export LIBRARY_PATH=/opt/homebrew/lib
 ## Python Env exports
 ### Pipx
 export PIPX_HOME=$HOME/.venvs/pipx
 export PATH="$PATH:$HOME/.local/bin"
-### pyenv
+# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-## PyTables pip package build dependencies
-### hdf5
-export HDF5_DIR="$(brew --prefix hdf5)"
-### blosc
-export BLOSC_DIR="$(brew --prefix c-blosc)"
-### bzip2
-export PATH="/opt/homebrew/opt/bzip2/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/bzip2/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/bzip2/include"
-### lzo
-export C_INCLUDE_PATH=/opt/homebrew/Cellar/lzo/2.10/include/lzo:/opt/homebrew/Cellar/lzo/2.10/include/
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -149,7 +133,8 @@ fpath=(~/.zshutils "${fpath[@]}")
 # if there is a problem with autoloaded functions, after edit, one needs to e.g.: "unfunction utils" before autoload
 # freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
 # unfunction utils cheatmux cheatnvim ...
-autoload -Uz bashcompinit kp bi bu ci cu utils gitutils dockerutils cheatnvim cheatmux cheatfzf cheatbash
+autoload -Uz compinit bashcompinit kp bi bu ci cu utils gitutils dockerutils cheatnvim cheatmux cheatfzf cheatbash
+compinit
 
 # ----------------------------------- Bindkeys (utils) 
 # -s option is used to translate the input string to output string.
@@ -185,6 +170,9 @@ if type rg &> /dev/null; then
   --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
   "
 fi
+
+# ---------------- Source ohmyzsh
+source $ZSH/oh-my-zsh.sh
 
 # ----------------------------------- ALIASES
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
