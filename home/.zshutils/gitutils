@@ -60,7 +60,8 @@ git push origin --tags                &_  Push all new tags to origin
 git tag -d <tagname>                  >_  Delete local tag
 git push origin --delete <tagname>    >_  Delete tag from origin
 
-# ----------------------------------- Show, List
+# ----------------------------------- Show, List, Diff
+git diff HEAD HEAD~1                  &_  Diff current commit with previous
 git log                               &_  Show commit logs (full)
 git shortlog                          &_  Show commit logs (short)
 git log --oneline                     &_  Show commit logs (oneline)
