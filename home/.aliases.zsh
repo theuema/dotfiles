@@ -47,11 +47,9 @@ alias lowercase_all='for f in *; do mv "$f" "$f.tmp"; mv "$f.tmp" "`echo $f | tr
 #alias rntoparentfolder_dry='for f in */* ;do fp=$(dirname "$f"); ext="${f##*.}" ; echo "$f" "$fp"/"$fp"."$ext" ;done'
 #alias rntoparentfolder_x='for f in */* ;do fp=$(dirname "$f"); ext="${f##*.}" ; mv "$f" "$fp"/"$fp"."$ext" ;done'
 
-
 #alias stripoutprefix='for f in *; do mv "$f" "${f#$1}"; done'
 #alias stripout='for f in *; do mv "$f" "${f/$1/}"; done'
     # For those commands better use F2-tool which has a dry and execute run for more security when renaming
-
 
 # ---------------- Archives
 alias unrarmultip='find . -name "*.rar" -exec unar {} \;'
@@ -74,6 +72,9 @@ alias cp2='rsync -ah --info=progress2'
 alias cpr='rsync -ahr --progress'
 alias mv2='rsync -ahP --remove-source-files'
 alias mv3='rsync -ah --info=progress2 --remove-source-files'
+
+# ---------------- DEV
+alias ggraph='git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all'
 
 # ---------------- TMUX
 alias tmuxkillall='tmux kill-session -a'

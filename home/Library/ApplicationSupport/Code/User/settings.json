@@ -27,6 +27,7 @@
     "editor.multiCursorModifier": "ctrlCmd",
     "python.autoComplete.addBrackets": true,
     "python.analysis.completeFunctionParens": true,
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
     /* Latex */
     "latex-workshop.latex.outDir": "%DIR%/build",
     "latex-workshop.view.pdf.viewer": "tab",
