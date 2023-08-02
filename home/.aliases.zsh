@@ -74,7 +74,7 @@ alias mv2='rsync -ahP --remove-source-files'
 alias mv3='rsync -ah --info=progress2 --remove-source-files'
 
 # ---------------- DEV
-alias ggraph='git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all'
+alias ggraph='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)" --all'
 
 # ---------------- TMUX
 alias tmuxkillall='tmux kill-session -a'
