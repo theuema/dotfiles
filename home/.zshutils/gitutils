@@ -13,11 +13,11 @@ git config --global core.editor emacs                   >_  Change the from \$ED
 git config --global commit.template ~/.gitmessage.txt   >_  Add commit message template to git; add e.g., '~/.gitmessage.txt'
 git config --list --show-origin --show-scope            &_  Show git config files location
 
-# --------------------------------------------- Checkout, Fetch, Reset local, Delete
+# --------------------------------------------- Checkout, Switch, Fetch, Reset local, Delete
 git fetch origin                                &_  Pull the latest commits
-git checkout <branchname>                       >_  Checkout an existing branch 
-git checkout -b <newbranchname>                 >_  Create and checkout a new branch, forked from the current branch
-git checkout -b <newbranchname> <branchname>    >_  Create and checkout a new branch, forked from a specific branch
+git switch <branchname>                         >_  Switch to existing branch 
+git switch -c <newbranchname>                   >_  Create and switch to a new branch, forked from the current branch
+git switch -c <newbranchname> <branchname>      >_  Create and switch to a new branch, forked from a specific branch
 git checkout .                                  &_  Remove unstaged tracked files
 git reset --hard                                &_  Remove staged and unstaged tracked files
 git reset --hard origin/branchname              >_  Discarding all local commits on branchname in order to make the local branch identical to the "upstream" 
@@ -52,6 +52,7 @@ git push                              &_  Push to origin of checked-out branch
 git merge <branchname>                >_  Merge branch with branchname into current branch
 git merge --no-ff <branchname>        >_  Merge branch with branchname into current branch without fast-forwarding
 git merge --squash <branchname>       >_  Squash all commits that are ahead into one and merge (tries ff if possible)
+git reset --soft HEAD~3 && git commit >_  Squash last 3 commits to one and directly write a commit message
 git mergetool                         &_  Invoke GUI mergetool (needs pre-definition in .gitconfig)
 git tag <tagname>                     >_  Tag current commit with tagname
 git tag -a <tagname> -m               >_  Tag and annotate current commit with tagname and single line message
