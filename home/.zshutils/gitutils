@@ -15,6 +15,8 @@ git config --list --show-origin --show-scope            &_  Show git config file
 
 # --------------------------------------------- Checkout, Switch, Fetch, Reset local, Delete
 git fetch origin                                &_  Pull the latest commits
+git pull                                        &_  Fetch and merge
+git pull --rebase                               &_  Fetch and rebase
 git switch <branchname>                         >_  Switch to existing branch 
 git switch -c <newbranchname>                   >_  Create and switch to a new branch, forked from the current branch
 git switch -c <newbranchname> <branchname>      >_  Create and switch to a new branch, forked from a specific branch
