@@ -120,7 +120,7 @@ n                           Repeat search in same direction
 N                           Repeat search in opposite direction
 :%s/old/new/g               Replace all old with new throughout file
 :%s/old/new/gc              Replace all old with new throughout file with confirmations
-<C-h>           [KBind]     Remove highlighting of search matches
+<leader-h>      [KBind]     Remove highlighting of search matches
 :noh[lsearch]               Remove highlighting of search matches
 :e **/test/Suite.java       Search files w/o fzf
 :r! find . -type f          Search files w/o fzf

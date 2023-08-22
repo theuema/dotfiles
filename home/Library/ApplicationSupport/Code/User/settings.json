@@ -38,9 +38,19 @@
         "photogrammetric"
     ],
     "[python]": {
-        "editor.formatOnType": true
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        //"editor.formatOnSave": true
     },
-    "settingsSync.ignoredExtensions": [],
+    "black-formatter.args": [
+        "-l 120"
+    ],
+    "colorize.languages": [
+        "python",
+        // ...
+    ],
+    "autoDocstring.docstringFormat": "sphinx",
+    "python.analysis.typeCheckingMode": "basic"
     /* VIM emulation */
     // "vim.vimrc.enable": true
 }

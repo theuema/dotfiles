@@ -112,6 +112,7 @@ pyenv local <vNum>                      >_  Set the local application-specific P
 pyenv virtualenv <vNum> <venvname>      >_  Create a Python virtualenv using the pyenv-virtualenv plugin
 pyenv activate <venvname>               >_  Activate virtual environment
 pyenv deactivate                        &_  Deactivate virtual environment
+workonsystem                [alias]     &_  Switch to system python environment 
 
 # --------------------------------- Network
 ip addr show                        &_  Linux: Show IP address and network devices; Network
