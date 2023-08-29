@@ -25,9 +25,9 @@
     "terminal.integrated.fontFamily": "MesloLGM Nerd Font",
     "editor.fontSize": 14,
     "editor.multiCursorModifier": "ctrlCmd",
-    "python.autoComplete.addBrackets": true,
+    //"python.autoComplete.addBrackets": true,
     "python.analysis.completeFunctionParens": true,
-    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+    "python.defaultInterpreterPath": "/Users/mario.theuermann/.pyenv/versions/3.11.4/envs/i4SEE-sandbox",
     /* Latex */
     "latex-workshop.latex.outDir": "%DIR%/build",
     "latex-workshop.view.pdf.viewer": "tab",
@@ -50,7 +50,8 @@
         // ...
     ],
     "autoDocstring.docstringFormat": "sphinx",
-    "python.analysis.typeCheckingMode": "basic"
+    "editor.fontFamily": "MesloLGM Nerd Font",
+    //"python.analysis.typeCheckingMode": "basic"
     /* VIM emulation */
     // "vim.vimrc.enable": true
 }

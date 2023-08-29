@@ -1,39 +1,16 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
-    {
-        "key": "ctrl+shift+d",
-        "command": "workbench.view.debug",
-        "when": "viewContainer.workbench.view.debug.enabled"
-    },
-    {
-        "key": "shift+cmd+d",
-        "command": "-workbench.view.debug",
-        "when": "viewContainer.workbench.view.debug.enabled"
-    },
-    {
-        "key": "shift+cmd+d",
-        "command": "editor.action.copyLinesDownAction",
-        "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "shift+alt+down",
-        "command": "-editor.action.copyLinesDownAction",
-        "when": "editorTextFocus && !editorReadonly"
-    },
+    // {
+    //     "key": "shift+cmd+d",
+    //     "command": "editor.action.copyLinesDownAction",
+    //     "when": "editorTextFocus && !editorReadonly"
+    // },
     {
         "key": "ctrl+[Backquote]",
         "command": "workbench.action.navigateBack"
     },
     {
-        "key": "ctrl+-",
-        "command": "-workbench.action.navigateBack"
-    },
-    {
-        "key": "ctrl+shift+[Backquote]",
+        "key": "shift+ctrl+[Backquote]",
         "command": "workbench.action.navigateForward"
-    },
-    {
-        "key": "ctrl+shift+-",
-        "command": "-workbench.action.navigateForward"
     }
 ]

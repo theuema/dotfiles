@@ -64,15 +64,16 @@ git tag -d <tagname>                  >_  Delete local tag
 git push origin --delete <tagname>    >_  Delete tag from origin
 
 # ----------------------------------- Show, List, Diff
-git diff HEAD HEAD~1                  &_  Diff current commit with previous
-git log                               &_  Show commit logs (full)
-git shortlog                          &_  Show commit logs (short)
-git log --oneline                     &_  Show commit logs (oneline)
-git log --pretty=oneline              &_  Show commit logs (pretty oneline)
-ggraph                    [alias]     &_  Show pretty graph for the current repository
-git ls-files                          &_  List tracked files of the current branch
-git ls-tree -r main --name-only       &_  List tracked files of the main branch
-git branch -a                         &_  List all branches, local and remote
+git diff HEAD HEAD~1                      &_  Diff current commit with previous
+git diff <branch1> <branch2> -- <fpath>   &_  Diff a specific file from different branches
+git log                                   &_  Show commit logs (full)
+git shortlog                              &_  Show commit logs (short)
+git log --oneline                         &_  Show commit logs (oneline)
+git log --pretty=oneline                  &_  Show commit logs (pretty oneline)
+ggraph                    [alias]         &_  Show pretty graph for the current repository
+git ls-files                              &_  List tracked files of the current branch
+git ls-tree -r main --name-only           &_  List tracked files of the main branch
+git branch -a                             &_  List all branches, local and remote
 
 "
 local cmd=$(echo $helptxt | eval "fzf --header='[git_utils:show]'")
