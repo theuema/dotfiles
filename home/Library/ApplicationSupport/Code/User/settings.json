@@ -1,6 +1,6 @@
 {
     "workbench.colorTheme": "Cobalt Next",
-    /* terminal */
+    /* Terminal */
     "terminal.integrated.profiles.linux": {
         "bash": {
             "path": "bash",
@@ -15,28 +15,25 @@
         "tmux": {
             "path": "tmux",
             "icon": "terminal-tmux"
-        },
-        "pwsh": {
-            "path": "pwsh",
-            "icon": "terminal-powershell"
         }
     },
     "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.fontFamily": "MesloLGM Nerd Font",
+    /* Editor */
+    "editor.fontFamily": "MesloLGM Nerd Font",
     "editor.fontSize": 14,
     "editor.multiCursorModifier": "ctrlCmd",
-    //"python.autoComplete.addBrackets": true,
-    "python.analysis.completeFunctionParens": true,
-    "python.defaultInterpreterPath": "/Users/mario.theuermann/.pyenv/versions/3.11.4/envs/i4SEE-sandbox",
+    "editor.accessibilitySupport": "off",
+    "editor.wordWrap": "on",
     /* Latex */
     "latex-workshop.latex.outDir": "%DIR%/build",
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.autoBuild.run": "never",
-    "editor.accessibilitySupport": "off",
-    "editor.wordWrap": "on",
-    "cSpell.userWords": [
-        "photogrammetric"
-    ],
+    /* Python */ 
+    "python.defaultInterpreterPath": "/Users/mario.theuermann/.pyenv/versions/3.11.4/envs/i4SEE-sandbox",
+    //"python.autoComplete.addBrackets": true,
+    "python.analysis.completeFunctionParens": true,
+    //"python.analysis.typeCheckingMode": "basic",
     "[python]": {
         "editor.formatOnType": true,
         "editor.defaultFormatter": "ms-python.black-formatter",
@@ -45,13 +42,15 @@
     "black-formatter.args": [
         "-l 120"
     ],
+    /* Other */ 
+    "autoDocstring.docstringFormat": "sphinx",
     "colorize.languages": [
         "python",
         // ...
     ],
-    "autoDocstring.docstringFormat": "sphinx",
-    "editor.fontFamily": "MesloLGM Nerd Font",
-    //"python.analysis.typeCheckingMode": "basic"
+    "cSpell.userWords": [
+        "photogrammetric"
+    ],
     /* VIM emulation */
     // "vim.vimrc.enable": true
 }
