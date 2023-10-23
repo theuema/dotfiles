@@ -12,5 +12,13 @@
     {
         "key": "shift+ctrl+[Backquote]",
         "command": "workbench.action.navigateForward"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "editor.action.inlineSuggest.showNext"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "editor.action.inlineSuggest.showPrevious"
     }
 ]

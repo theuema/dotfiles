@@ -102,6 +102,7 @@ which python3                           &_  Sometimes deviates to pyenv which du
 pyenv install -l | grep ' 3\.[[678]]'   >_  Regex Python versions for installation
 pyenv install -l Z                      &_  Use fzf to search for Python version
 pyenv install <vNum>                    >_  Install specific python version found with -l
+pyenv uninstall <venvname or vNum>      >_  Uninstall a specific version or virtual environment
 lisap $HOME/.pyenv/versions             &_  See installed Python version
 ls $HOME/.pyenv/versions                &_  See installed Python version minimal
 rm $HOME/.pyenv/versions/<vNum>         >_  Remove python version

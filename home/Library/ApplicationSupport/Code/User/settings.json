@@ -29,15 +29,13 @@
     "latex-workshop.latex.outDir": "%DIR%/build",
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.autoBuild.run": "never",
-    /* Python */ 
     "python.defaultInterpreterPath": "/Users/mario.theuermann/.pyenv/versions/3.11.4/envs/i4SEE-sandbox",
-    //"python.autoComplete.addBrackets": true,
     "python.analysis.completeFunctionParens": true,
     //"python.analysis.typeCheckingMode": "basic",
     "[python]": {
         "editor.formatOnType": true,
         "editor.defaultFormatter": "ms-python.black-formatter",
-        //"editor.formatOnSave": true
+        "editor.formatOnSave": true
     },
     "black-formatter.args": [
         "-l 120"
@@ -51,6 +49,12 @@
     "cSpell.userWords": [
         "photogrammetric"
     ],
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false
+    },
     /* VIM emulation */
     // "vim.vimrc.enable": true
 }
