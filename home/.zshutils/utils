@@ -7,68 +7,68 @@
 
 local helptxt="
 # ----------------------------------- General linux
-cat /etc/os-release                   &_  Linux: Show OS release
-cat /etc/lsb-release                  &_  Linux: Show OS release 
-cat /etc/*release                     &_  Linux: Show full OS release
-hostnamectl                           &_  Linux: Show OS details
-lsb_release -a                        &_  Linux: Show OS details
-cat /etc/issue                        &_  Linux: Show OS version
-uname -r                              &_  Show kernel
-uname -a                              &_  Show all the uname infos
-hostname                              &_  Show (or set) the host name
-lsblk                                 &_  List block devices
-lsusb                                 &_  List USB devices (On Mac: 'brew install lsusb')
-who                                   &_  Show who is logged on (terminal sessions; users on server)
-w                                     &_  Show who is logged on and what they are doing (terminal sessions; users on server)
-adjustclock               [alias]     &_  Arch: Adjusts the clock when e.g., dualbooting with with windows
-getent group                          &_  List all groups present on the system 
-getent group <groupname>              >_  List all members of a specific group
-groups                                >_  List groups the current user belongs to
-groups <username>                     >_  List groups a specific user is a member of
-getent passwd | awk -F: '{ print $1}' &_  List all users present on the system
-awk -F: '{ print $1}' /etc/passwd Z   &_  Fuzzy search all users present on the system
-getent passwd {1000..60000}           &_  List all normal users present on the system with details 
-lsmod Z                               &_  Fuzzy search kernel modules currently loaded
-ps ax Z                               &_  Fuzzy search processes running (use htop for interactive)
-modinfo <modulename>                  >_  Show info of kernel module
-modprobe <modulename>                 >_  Load a kernel module
-md5filesindir                         &_  Show MD5 hash from every file in dir
-countfilesdir <dirpath>   [alias]     &_  Count number of files in a specific dir
-biggest <int>             [alias]     &_x List the x biggest files or dirs in terms of fsize in current dir
-sizessort                 [alias]     &_  List and sort files and dirs in terms of fsize on disk
-sizeof <(f)path>          [alias]     &_x List human-readable size of a specific file or dir
-lssubdir                  [alias]     &_  List files from every subdir of current dir
-dfh                       [alias]     &_  Show filesystem storage
-dfht                      [alias]     &_  Show filesystem storage and fstypes
-dmesg | grep -i <pattern>             >_  Check for dmesg logs - display or control the kernel ring buffer.
-sudo udevadm monitor                  >_  Linux: Send control commands or test the device manager
+cat /etc/os-release                     &_  Linux: Show OS release
+cat /etc/lsb-release                    &_  Linux: Show OS release 
+cat /etc/*release                       &_  Linux: Show full OS release
+hostnamectl                             &_  Linux: Show OS details
+lsb_release -a                          &_  Linux: Show OS details
+cat /etc/issue                          &_  Linux: Show OS version
+uname -r                                &_  Show kernel
+uname -a                                &_  Show all the uname infos
+hostname                                &_  Show (or set) the host name
+lsblk                                   &_  List block devices
+lsusb                                   &_  List USB devices (On Mac: 'brew install lsusb')
+who                                     &_  Show who is logged on (terminal sessions; users on server)
+w                                       &_  Show who is logged on and what they are doing (terminal sessions; users on server)
+adjustclock               [alias]       &_  Arch: Adjusts the clock when e.g., dualbooting with with windows
+getent group                            &_  List all groups present on the system 
+getent group <groupname>                >_  List all members of a specific group
+groups                                  >_  List groups the current user belongs to
+groups <username>                       >_  List groups a specific user is a member of
+getent passwd | awk -F: '{ print $1}'     &_  List all users present on the system
+awk -F: '{ print $1}' /etc/passwd Z       &_  Fuzzy search all users present on the system
+getent passwd {1000..60000}             &_  List all normal users present on the system with details 
+lsmod Z                                 &_  Fuzzy search kernel modules currently loaded
+ps ax Z                                 &_  Fuzzy search processes running (use htop for interactive)
+modinfo <modulename>                    >_  Show info of kernel module
+modprobe <modulename>                   >_  Load a kernel module
+md5filesindir                           &_  Show MD5 hash from every file in dir
+countfilesdir <dirpath>   [alias]       &_  Count number of files in a specific dir
+biggest <int>             [alias]       &_x List the x biggest files or dirs in terms of fsize in current dir
+sizessort                 [alias]       &_  List and sort files and dirs in terms of fsize on disk
+sizeof <(f)path>          [alias]       &_x List human-readable size of a specific file or dir
+lssubdir                  [alias]       &_  List files from every subdir of current dir
+dfh                       [alias]       &_  Show filesystem storage
+dfht                      [alias]       &_  Show filesystem storage and fstypes
+dmesg | grep -i <pattern>               >_  Check for dmesg logs - display or control the kernel ring buffer.
+sudo udevadm monitor                    >_  Linux: Send control commands or test the device manager
 ## ---------------------------------- symlink
-ln -s <f|d_path> <symlink_path>       >_  Create a symlink
-ln -sfn <f|d_path> <symlink_path>     >_  Update a symlink
+ln -s <f|d_path> <symlink_path>         >_  Create a symlink
+ln -sfn <f|d_path> <symlink_path>       >_  Update a symlink
 ## ---------------------------------- batch renaming
-prefix_all <prefix>       [alias]     &_  Add prefix to all files and subdirs of current dir
-lowercase_all             [alias]     &_  Rename all files and subdirs of current dir to lowercase file/dir names
+prefix_all <prefix>       [alias]       &_  Add prefix to all files and subdirs of current dir
+lowercase_all             [alias]       &_  Rename all files and subdirs of current dir to lowercase file/dir names
 ## ---------------------------------- create, rm
-mkdirp <dirname>          [alias]     &_x Create a new dir and make parent dirs as needed
-mkdird <dirname>          [alias]     &_x Create a new dir and append todays date
-mkdirs <int>              [alias]     &_x Create numerous directories
-rmemptydirs               [alias]     &__ Remove empty dirs recursively from this dir downwards
-rmrfrecursive <name>      [alias]     &_x Remove files or dirs recursively from this dir downwards (e.g.: ".DS_Store", "./git")
+mkdirp <dirname>          [alias]       &_x Create a new dir and make parent dirs as needed
+mkdird <dirname>          [alias]       &_x Create a new dir and append todays date
+mkdirs <int>              [alias]       &_x Create numerous directories
+rmemptydirs               [alias]       &__ Remove empty dirs recursively from this dir downwards
+rmrfrecursive <name>      [alias]       &_x Remove files or dirs recursively from this dir downwards (e.g.: ".DS_Store", "./git")
 ## ---------------------------------- find
-findin <path> <name>      [alias]     &_x Find -name in given path
-lisapgrep <pattern>       [alias]     &_x Grep for a file or dir in the current dir
-grepfiles <pattern>       [alias]     &_x Grep for pattern in files of the current dir
+findin <path> <name>      [alias]       &_x Find -name in given path
+lisapgrep <pattern>       [alias]       &_x Grep for a file or dir in the current dir
+grepfiles <pattern>       [alias]       &_x Grep for pattern in files of the current dir
 
 # --------------------------------------- archives
-targz <filepath.tar.gz>       [alias]     &_x Unzip and extract from file
-tartar <filepath.tar>         [alias]     &_x Extract from file
-tarnew <n.tar.gz> <(f)path>   [alias]     &_x Create archive from dir or file
-unrarmultip                   [alias]     &_  Unrar mulitple .rar files in current folder (in place)
-unrarmultsubdir               [alias]     &_  Unrar mulitple .rar files in current folder (to subdir)
-unrarpw <pw> <n.rar>          [alias]     &_x Unrar password protected rar archive
-unzipsubdir <n.zip>           [alias]     &_x Unzip given .zip file (to subdir)
-merge001ip <*.*.001>          [alias]     &_x Merge *.001 files to one (in place)
-merge001 <*.*.001> <dirpath>  [alias]     &_x Merge *.001 files to one (to subdir)
+targz <filepath.tar.gz>       [alias]   &_x Unzip and extract from file
+tartar <filepath.tar>         [alias]   &_x Extract from file
+tarnew <n.tar.gz> <(f)path>   [alias]   &_x Create archive from dir or file
+unrarmultip                   [alias]   &_  Unrar mulitple .rar files in current folder (in place)
+unrarmultsubdir               [alias]   &_  Unrar mulitple .rar files in current folder (to subdir)
+unrarpw <pw> <n.rar>          [alias]   &_x Unrar password protected rar archive
+unzipsubdir <n.zip>           [alias]   &_x Unzip given .zip file (to subdir)
+merge001ip <*.*.001>          [alias]   &_x Merge *.001 files to one (in place)
+merge001 <*.*.001> <dirpath>  [alias]   &_x Merge *.001 files to one (to subdir)
 
 # ------------------------------------- tools
 tree                                    &_  List files and directories

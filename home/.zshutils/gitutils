@@ -58,6 +58,7 @@ git push                              &_  Push to origin of checked-out branch
 git merge <branchname>                >_  Merge branch with branchname into current branch
 git merge --no-ff <branchname>        >_  Merge branch with branchname into current branch without fast-forwarding
 git merge --squash <branchname>       >_  Squash all commits that are ahead into one and merge (tries ff if possible)
+git merge --continue                  >_  Continue resolved merge and create commit message
 git reset --soft HEAD~3 && git commit >_  Squash last 3 commits to one and directly write a commit message
 git mergetool                         &_  Invoke GUI mergetool (needs pre-definition in .gitconfig)
 git tag <tagname>                     >_  Tag current commit with tagname

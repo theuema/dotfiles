@@ -147,7 +147,7 @@ bashcompinit
 eval "$(register-python-argcomplete pipx)"
 
 # Ditch duplicate PATH entries when loading .zshrc.
-#typeset -U PATH fpath
+typeset -U PATH fpath
 
 # ---------------- Fzf
 # fzf does not use ripgrep by default, so we need to tell fzf to use ripgrep with FZF_DEFAULT_COMMAND variable.

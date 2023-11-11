@@ -70,6 +70,13 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
+  -- Github Copilot
+  'github/copilot.vim',
+
+  -- black formatter
+  -- python -m pip install pynvim black
+  'psf/black',
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -279,6 +286,15 @@ vim.keymap.set('n', '<C-h>', '<C-w>h')
 -- "YankPaste": Paste last yank from register 0, which is not overwritten by a `dd`
 vim.keymap.set('n', '<leader>yp', '"0p')
 
+-- Copilot remaps
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-h>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Next()', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-k>", 'copilot#Previous()', { silent = true, expr = true })
+
+-- Black formatter
+vim.api.nvim_set_keymap("n", "<leader>bf", ":Black<CR>", { silent = true })
+
 -- More basic
 vim.keymap.set('n', '<leader>h', ':noh<CR>', { desc = 'Disable search highlighting' })
 vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree' })
@@ -465,7 +481,7 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   bashls = {},
