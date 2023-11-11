@@ -21,6 +21,7 @@ Shift+D (in :Ex)            Delete a certain file
 <C-h>          [KBind]      Copilot accept inline suggestion (mode insert)
 <C-j>          [KBind]      Copilot next inline suggestion (mode insert)
 <C-k>          [KBind]      Copilot previous inline suggestion (mode insert)
+:help copilot               See the copilot help
 <leader>bf     [KBind]      Black format the current buffer
 <leader>sf     [KBind]      Search files with fzf
 <leader>sg     [KBind]      Search in files with ripgrep
