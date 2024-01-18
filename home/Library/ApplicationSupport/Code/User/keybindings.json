@@ -14,15 +14,15 @@
         "command": "workbench.action.navigateForward"
     },
     {
-        "key": "ctrl+j",
+        "key": "ctrl+alt+j",
         "command": "editor.action.inlineSuggest.showNext"
     },
     {
-        "key": "ctrl+k",
+        "key": "ctrl+alt+k",
         "command": "editor.action.inlineSuggest.showPrevious"
     },
     {
-        "key": "ctrl+h",
+        "key": "ctrl+alt+h",
         "command": "editor.action.inlineSuggest.commit",
         "when": "inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
     }

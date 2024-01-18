@@ -68,6 +68,8 @@ zz                          Center cursor on screen
 <C-f>                       Move forward one full screen
 <C-d>                       Move forward 1/2 a screen
 <C-u>                       Move back 1/2 a screen
+<C-o>                       Move cursor to the previous position
+<C-i>                       Move cursor to the next position
 
 # ------------------------- Copy/delete (in)lines
 o                           Add empty line after the cursor

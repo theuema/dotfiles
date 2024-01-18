@@ -54,7 +54,7 @@
         "plaintext": true,
         "markdown": true,
         "scminput": false
-    },
+    }
     /* VIM emulation */
     // "vim.vimrc.enable": true
 }

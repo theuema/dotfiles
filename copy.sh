@@ -60,7 +60,7 @@ if [[ "$1" == "-c" ]]; then # copy dotfiles to repo
         done
     fi
 else
-    echo -e "Copy dotfiles to this repository with '-c' param\n"
+    echo -e "Copy dotfiles to this repository passing '-c'\n"
     #echo -e "TODO: Copy dotfiles from the cloned repository to specific location on fs"
 fi
 }
