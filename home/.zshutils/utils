@@ -63,6 +63,7 @@ rmrfrecursive <name>      [alias]         &_x Remove files or dirs recursively f
 findin <path> <name>      [alias]         &_x Find -name in given path
 lisapgrep <pattern>       [alias]         &_x Grep for a file or dir in the current dir
 grepfiles <pattern>       [alias]         &_x Grep for pattern in files of the current dir
+find . -name "*.orig" -exec echo {} \;    >_  Find files and execute command on them
 
 # --------------------------------------- archives
 targz <filepath.tar.gz>       [alias]     &_x Unzip and extract from file

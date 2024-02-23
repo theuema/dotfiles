@@ -1,0 +1,29 @@
+[font]
+size = 14.0
+
+[font.bold]
+family = "MesloLGM Nerd Font Propo"
+style = "Bold"
+
+[font.bold_italic]
+family = "MesloLGM Nerd Font Propo"
+style = "Bold Italic"
+
+[font.italic]
+family = "MesloLGM Nerd Font Propo"
+style = "Italic"
+
+[font.normal]
+family = "MesloLGM Nerd Font Propo"
+style = "Regular"
+
+[window]
+option_as_alt = "OnlyLeft"
+
+[window.dimensions]
+columns = 215
+lines = 36
+
+[window.position]
+x = 5
+y = 57
