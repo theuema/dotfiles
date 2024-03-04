@@ -20,6 +20,12 @@ style = "Regular"
 [window]
 option_as_alt = "OnlyLeft"
 
+[keyboard]
+bindings = [
+  { key = "Right", mods = "Alt", chars = "\u001BF" },
+  { key = "Left",  mods = "Alt", chars = "\u001BB" },
+]
+
 [window.dimensions]
 columns = 215
 lines = 36
