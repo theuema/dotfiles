@@ -15,6 +15,7 @@ git config --list --show-origin --show-scope            &_  Show git config file
 
 # --------------------------------------------- Checkout, Switch, Fetch, Reset local, Delete
 git fetch origin                                &_  Pull the latest commits
+git fetch --prune                               &_  Fetch and prune (remove) deleted branches
 git pull                                        &_  Fetch and merge
 git pull --rebase                               &_  Fetch and rebase
 git switch <branchname>                         >_  Switch to existing branch 
@@ -72,18 +73,18 @@ git push origin --delete <tagname>    >_  Delete tag from origin
 git diff HEAD~1 HEAD                         &_  Diff previous with current commit
 git diff --stat HEAD~1 HEAD                  &_  Diff previous with current commit (stat)
 git diff --numstat HEAD~1 HEAD               &_  Diff previous with current commit (numstat)
-git diff <branch1> <branch2> <fpath>         &_  Diff a specific file from different branches
-git show <branch>                            &_  Show changes within a branch to merge into the current branch
-git show --stat <branch>                     &_  Show changes within a branch to merge into the current branch (stat)
+git diff <branch1> <branch2> <fpath>         >_  Diff a specific file from different branches
+git show <branch>                            >_  Show changes within a branch to merge into the current branch
+git show --stat <branch>                     >_  Show changes within a branch to merge into the current branch (stat)
 git log                                      &_  Show commit logs (full)
 git shortlog                                 &_  Show commit logs (short)
 git log --oneline                            &_  Show commit logs (oneline)
 git log --pretty=oneline                     &_  Show commit logs (pretty oneline)
 git log --stat --format='%H [%an]'           &_  Show commit logs (stat with changes)   
 git log --pretty=format:'%h %ad- %s [%an]'   &_  Show commit logs (pretty format in one line)
-git log -- <fpath>                           &_  List all commits that touched a specific file
-git log -p -- <fpath>                        &_  List all commits that touched a specific file with diff
-git log -n 1 -- <fpath>                      &_  Show the last commit that touched a specific file 
+git log -- <fpath>                           >_  List all commits that touched a specific file
+git log -p -- <fpath>                        >_  List all commits that touched a specific file with diff
+git log -n 1 -- <fpath>                      >_  Show the last commit that touched a specific file 
 ggraph                    [alias]            &_  Show pretty graph for the current repository
 git ls-files                                 &_  List tracked files of the current branch
 git ls-tree -r main --name-only              &_  List tracked files of the main branch
