@@ -70,6 +70,13 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
+  -- Github Copilot
+  'github/copilot.vim',
+
+  -- black formatter
+  -- python -m pip install pynvim black
+  'psf/black',
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -248,7 +255,7 @@ end)
 -- Options
 require "options.vimrc"
 
--- [[ Basic Keymaps ]]
+-- [[ Basic Keybinings ]]
 -- The Lua API has a function to map keys to some functions. The function signature is vim.api.nvim_set_keymap(mode, keys, mapping, options), where mode refers to a letter representing editor mode ( n for normal, i for insert etc.)
 -- just like in original vim functions like nmap or imap, keys is a string representing a combination of keys, mapping is a string representing what the keys map to, and options are a table where you can pass some additional settings.
 
@@ -270,20 +277,29 @@ vim.keymap.set('n', '<C-Down>', ':bn<CR>')
 vim.keymap.set('n', '<C-Up>', ':bp<CR>')
 vim.keymap.set('n', '<C-S-Up>', ':b#<CR>')
 -- Delete all buffers except the current (command def in vimrc.lua) 
-vim.keymap.set('n', '<leader>bo', ':Bonly<CR>')
+vim.keymap.set('n', '<leader>bo', ':Bonly<CR>', { desc = 'Delete all buffers except the current' })
 
 -- Switch focus of windows to left and right
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 
 -- "YankPaste": Paste last yank from register 0, which is not overwritten by a `dd`
-vim.keymap.set('n', '<leader>yp', '"0p')
+vim.keymap.set('n', '<leader>yp', '"0p', { desc = 'Paste last yank from register 0' })
+
+-- Copilot remaps
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-A-h>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-A-j>", 'copilot#Next()', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-A-k>", 'copilot#Previous()', { silent = true, expr = true })
+
+-- Black formatter
+vim.api.nvim_set_keymap("n", "<leader>bf", ":Black<CR>", { silent = true , desc = 'Format with black' })
 
 -- More basic
 vim.keymap.set('n', '<leader>h', ':noh<CR>', { desc = 'Disable search highlighting' })
 vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree' })
 
--- Keymaps for better default experience
+-- Keybindings for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
@@ -465,7 +481,7 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   bashls = {},

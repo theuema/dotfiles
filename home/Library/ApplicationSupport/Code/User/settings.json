@@ -29,6 +29,8 @@
     "latex-workshop.latex.outDir": "%DIR%/build",
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.autoBuild.run": "never",
+    /* Python */
+    "python.defaultInterpreterPath": "/Users/mario.theuermann/.pyenv/versions/3.11.4/envs/i4SEE-sandbox/bin/python",
     "python.analysis.completeFunctionParens": true,
     //"python.analysis.typeCheckingMode": "basic",
     "[python]": {

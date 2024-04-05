@@ -133,7 +133,7 @@ fpath=(~/.zshutils "${fpath[@]}")
 # if there is a problem with autoloaded functions, after edit, one needs to e.g.: "unfunction utils" before autoload
 # freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
 # unfunction utils cheatmux cheatnvim ...
-autoload -Uz compinit bashcompinit kp bi bu ci cu utils gitutils dockerutils cheatnvim cheatmux cheatfzf cheatbash
+autoload -Uz compinit bashcompinit kp bi bu ci cu utils gitutils dockerutils cheatnvim cheatmux cheatfzf cheatbash workutils # create symlink to external workutils (e.g., onedrive) containing current-job-specific utils
 compinit
 
 # ----------------------------------- Bindkeys (utils) 
@@ -147,7 +147,7 @@ bashcompinit
 eval "$(register-python-argcomplete pipx)"
 
 # Ditch duplicate PATH entries when loading .zshrc.
-#typeset -U PATH fpath
+typeset -U PATH fpath
 
 # ---------------- Fzf
 # fzf does not use ripgrep by default, so we need to tell fzf to use ripgrep with FZF_DEFAULT_COMMAND variable.
@@ -183,6 +183,7 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
 [ -f ~/.mac.zsh ] && source ~/.mac.zsh
 [ -f ~/.linux.zsh ] && source ~/.linux.zsh
+[ -f ~/.work.zsh ] && source ~/.work.zsh # create a symlink to an external work.zsh containing current-job-specific functions, aliases ...
 
 # ----------------------------------- macOS brew-zsh-plugins (should be sourced at the end of this file)
 # zsh-autosuggestions
