@@ -34,9 +34,11 @@ sel_mac_zshutils=(kp cu ci bu bi)
 
 if [[ "$1" == "-c" ]]; then # copy dotfiles to repo
     for d in "${sel_home_dotfiles[@]}"
+        # copy home dotfiles
         do rsync -ahP "${localhome}/$d" "${copy_dir}/"
     done
     for d in "${sel_config_folders[@]}"
+        # copy selected .config folders
         do rsync -ahP --exclude={'.git','.github','.gitignore','.DS_Store'} "${home_config_path}/$d" "${config_copy_path}/"
     done
     # copy linux specific dotfiles
@@ -59,9 +61,37 @@ if [[ "$1" == "-c" ]]; then # copy dotfiles to repo
             do rsync -ahP "${home_utils_path}/$u" "${utils_copy_path}/"
         done
     fi
+elif [[ "$1" == "-overwrite" ]]; then # copy dotfiles back to respective folders with rsync
+    for d in "${sel_home_dotfiles[@]}"
+        # copy back home dotfiles
+        do rsync -ahP "${copy_dir}/$d" "${localhome}/"
+    done
+    for d in "${sel_config_folders[@]}"
+        # copy back selected .config folders
+        do rsync -ahP "${config_copy_path}/$d" "${home_config_path}/"
+    done
+    if [[ "$(uname -a | awk '{print $1}')" != "Darwin" ]]; then
+        # copy back linux specific dotfiles
+        rsync -ahP "${copy_dir}/.linux.zsh" "${localhome}/" 
+    fi
+    for u in "${sel_zshutils[@]}"
+        # copy back utils
+        do rsync -ahP "${utils_copy_path}/$u" "${home_utils_path}/"
+    done
+    if [[ "$(uname -a | awk '{print $1}')" == "Darwin" ]]; then
+        # copy back mac dotfiles
+        rsync -ahP "${copy_dir}/.mac.zsh" "${localhome}/"
+        rsync -ahP "${library_copy_path}/Preferences/com.googlecode.iterm2.plist" "${localhome}/Library/Preferences/"
+        rsync -ahP "${vscode_user_app_support_copy_path}/keybindings.json" "${localhome}/Library/Application Support/Code/User/"
+        rsync -ahP "${vscode_user_app_support_copy_path}/settings.json" "${localhome}/Library/Application Support/Code/User/"
+        # copy back mac utils
+        for u in "${sel_mac_zshutils[@]}"
+            do rsync -ahP "${utils_copy_path}/$u" "${home_utils_path}/"
+        done
+    fi
 else
     echo -e "Copy dotfiles to this repository passing '-c'\n"
-    #echo -e "TODO: Copy dotfiles from the cloned repository to specific location on fs"
+    echo -e "Copy dotfiles from the cloned repository to specific location on fs passing '-overwrite'"
 fi
 }
 
