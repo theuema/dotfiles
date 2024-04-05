@@ -1,0 +1,62 @@
+{
+    "workbench.colorTheme": "Cobalt Next",
+    /* Terminal */
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.fontFamily": "MesloLGM Nerd Font",
+    /* Editor */
+    "editor.fontFamily": "MesloLGM Nerd Font",
+    "editor.fontSize": 14,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.accessibilitySupport": "off",
+    "editor.wordWrap": "on",
+    /* Latex */
+    "latex-workshop.latex.outDir": "%DIR%/build",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.autoBuild.run": "never",
+    /* Python */
+    "python.defaultInterpreterPath": "/Users/mario.theuermann/.pyenv/versions/3.11.4/envs/i4SEE-sandbox/bin/python",
+    //"python.defaultInterpreterPath": "/Users/xyz/.pyenv/versions/3.11.4/envs/abc/bin/python",
+    "python.analysis.completeFunctionParens": true,
+    //"python.analysis.typeCheckingMode": "basic",
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+    "black-formatter.args": [
+        "-l 120"
+    ],
+    /* Other */ 
+    "autoDocstring.docstringFormat": "sphinx",
+    "colorize.languages": [
+        "python",
+        // ...
+    ],
+    "cSpell.userWords": [
+        "photogrammetric"
+    ],
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false
+    }
+    /* VIM emulation */
+    // "vim.vimrc.enable": true
+}
