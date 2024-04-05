@@ -68,7 +68,7 @@ elif [[ "$1" == "-overwrite" ]]; then # copy dotfiles back to respective folders
     done
     for d in "${sel_config_folders[@]}"
         # copy back selected .config folders
-        do rsync -ahP "${config_copy_path}/$d" "${home_config_path}/"
+        do rsync -ahP --exclude={'.DS_Store'} "${config_copy_path}/$d" "${home_config_path}/"
     done
     if [[ "$(uname -a | awk '{print $1}')" != "Darwin" ]]; then
         # copy back linux specific dotfiles
