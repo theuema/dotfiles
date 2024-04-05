@@ -55,7 +55,7 @@ if [[ "$1" == "-c" ]]; then # copy dotfiles to repo
         rsync -ahP "${localhome}/.mac.zsh" "${copy_dir}/"
         rsync -ahP "${localhome}/Library/Preferences/com.googlecode.iterm2.plist" "${library_copy_path}/Preferences/"
         rsync -s -ahP "${localhome}/Library/Application Support/Code/User/keybindings.json" "${vscode_user_app_support_copy_path}/"
-        rsync -ahP "${localhome}/Library/Application Support/Code/User/settings.json" "${vscode_user_app_support_copy_path}/"
+        rsync -ahP "${localhome}/Library/Application Support/Code/User/settings.json" "${vscode_user_app_support_copy_path}/settings.json_$(hostname)"
         # utils
         for u in "${sel_mac_zshutils[@]}"
             do rsync -ahP "${home_utils_path}/$u" "${utils_copy_path}/"
@@ -83,7 +83,7 @@ elif [[ "$1" == "-overwrite" ]]; then # copy dotfiles back to respective folders
         rsync -ahP "${copy_dir}/.mac.zsh" "${localhome}/"
         rsync -ahP "${library_copy_path}/Preferences/com.googlecode.iterm2.plist" "${localhome}/Library/Preferences/"
         rsync -ahP "${vscode_user_app_support_copy_path}/keybindings.json" "${localhome}/Library/Application Support/Code/User/"
-        rsync -ahP "${vscode_user_app_support_copy_path}/settings.json" "${localhome}/Library/Application Support/Code/User/"
+        rsync -ahP "${vscode_user_app_support_copy_path}/settings.json_$(hostname)" "${localhome}/Library/Application Support/Code/User/"
         # copy back mac utils
         for u in "${sel_mac_zshutils[@]}"
             do rsync -ahP "${utils_copy_path}/$u" "${home_utils_path}/"
