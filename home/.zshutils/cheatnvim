@@ -2,9 +2,9 @@ local helptxt='
 # ------------------------- General
 Space       [mapleader]     Current VIM Leader Key
 K                           Open man page for word under the cursor
-u                           Undo
+u                           Undo 
 <C-r>                       Redo changes which were undone (undo the undos)
-U                           Restore (undo) when you actually are in the changed line
+U                           Restore (undo) when you actually are in the changed line 
 .                           Generally repeat a previous change, at the current cursor position!
 :set expandtab?             See the current value of an option, just add a "?"
 :reg[isters]                Show registers content
@@ -18,13 +18,6 @@ U                           Restore (undo) when you actually are in the changed 
 Shift+D (in :Ex)            Delete a certain file
 :Rename NAME                A vim script to rename the current file
 :colo[rscheme]              Change colorscheme
-<C-h>          [KBind]      Copilot accept inline suggestion (mode insert)
-<C-j>          [KBind]      Copilot next inline suggestion (mode insert)
-<C-k>          [KBind]      Copilot previous inline suggestion (mode insert)
-:help copilot               See the copilot help
-<leader>bf     [KBind]      Black format the current buffer
-<leader>sf     [KBind]      Search files with fzf
-<leader>sg     [KBind]      Search in files with ripgrep
 
 # ------------------------- Cursor movement
 h                           Move cursor left
@@ -36,8 +29,6 @@ H                           Move to top of screen
 M                           Move to middle of screen
 L                           Move to bottom of screen
 w                           Jump forwards to the start of a word
-<C-o>                       Jump to the older cursor position in jump list (see :help mark_motions)
-<C-i>                       Jump to the newer cursor position in jump list (see :help mark_motions)
 Alt + Right                 Map to w - jump forwards to the start of a word
 W                           Jump forwards to the start of a word (words can contain punctuation)
 e                           Jump forwards to the end of a word
@@ -68,8 +59,6 @@ zz                          Center cursor on screen
 <C-f>                       Move forward one full screen
 <C-d>                       Move forward 1/2 a screen
 <C-u>                       Move back 1/2 a screen
-<C-o>                       Move cursor to the previous position
-<C-i>                       Move cursor to the next position
 
 # ------------------------- Copy/delete (in)lines
 o                           Add empty line after the cursor
@@ -87,7 +76,7 @@ J                           Join line below to the current one with one space in
 kJ                          Go line up and join the line below with the current line
 gJ                          Join line below to the current one without space in between
 yy                          Yank (copy) a line
-2yy                         Yank (copy) 2 lines
+2yy                         Yank (copy) 2 lines 
 y$                          Yank to the end of the line
 p                           Put (paste) the clipboard after cursor
 P                           Put (paste) before cursor
@@ -99,7 +88,7 @@ diw                         Delete inner word
 daw                         Delete a word (also deletes all spaces after and before the word)
 D                           Delete (cut) to the end of the line
 d$                          Delete (cut) to the end of the line
-x                           Delete (cut) character
+x                           Delete (cut) character 
 
 # ------------------------- Copy/Paste/Delete
 ggdG                        Delete all text in a file
@@ -131,7 +120,7 @@ n                           Repeat search in same direction
 N                           Repeat search in opposite direction
 :%s/old/new/g               Replace all old with new throughout file
 :%s/old/new/gc              Replace all old with new throughout file with confirmations
-<leader-h>      [KBind]     Remove highlighting of search matches
+<C-h>           [KBind]     Remove highlighting of search matches
 :noh[lsearch]               Remove highlighting of search matches
 :e **/test/Suite.java       Search files w/o fzf
 :r! find . -type f          Search files w/o fzf
@@ -166,7 +155,6 @@ cgn                         Select and edit the next occurence or just cycle thr
 :tabp[revious]  | gT        Tab previous
 <C-Right>       [KBind]     Tab next
 <C-Left>        [KBind]     Tab previous
-
 ## ------------------------ Window management
 <C-w>s                      Split window
 <C-w>v                      Split window vertically
@@ -204,22 +192,20 @@ ea                          Insert (append) at the end of the word
 Esc                         Exit insert mode
 
 # ------------------------- Marking text
-v                           Start visual mode, mark lines, then do a command (like y-yank)
+v                           Start visual mode, mark lines, then do a command (like y-yank) 
 V                           Start linewise visual mode
-<C-v>                       Start visual block mode
-aw                          Mark a word
+<C-v>                       Start visual block mode 
+aw                          Mark a word 
 ab                          A block with ()
 aB                          A block with {}
 at                          A block with <> tags
 ib                          Inner block with ()
 iB                          Inner block with {}
-it                          Inner block with <> tags
+it                          Inner block with <> tags 
 
 # ------------------------- NvimTree 
 <leader>t       [KBind]     Toggle NvimTree
-:help nvim-tree-commands    See current/default NvimTree commands
 :help nvim-tree-mappings    See current/default NvimTree keymappings
-g?                          Show the mappings of NvimTree
 
 # ------------------------- Tabs and spaces
 F11   #TODO                 Toggle the tab and spaces syntax

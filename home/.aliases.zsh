@@ -72,10 +72,11 @@ alias cp2='rsync -ah --info=progress2'
 alias cpr='rsync -ahr --progress'
 alias mv2='rsync -ahP --remove-source-files'
 alias mv3='rsync -ah --info=progress2 --remove-source-files'
+alias gpgaesfile='gpg --symmetric --cipher-algo AES256 $1'
+alias gpgdecryptfile='gpg -o $2 -d $1'
 
 # ---------------- DEV
 alias ggraph='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)" --all'
-alias workonsystem='pyenv global system'
 
 # ---------------- TMUX
 alias tmuxkillall='tmux kill-session -a'
