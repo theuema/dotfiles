@@ -54,7 +54,8 @@
         "plaintext": true,
         "markdown": true,
         "scminput": false
-    }
+    },
+    "python.defaultInterpreterPath": "/Users/theuema/.pyenv/versions/3.11.4/envs/pydev/bin/python"
     /* VIM emulation */
     // "vim.vimrc.enable": true
 }

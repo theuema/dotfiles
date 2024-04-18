@@ -195,9 +195,15 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # zsh-you-should-use
 source $(brew --prefix)/share/zsh-you-should-use/you-should-use.plugin.zsh
 
+# ----------------------------------- Use chruby
+source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.1.3
+
 # ----------------------------------- Automatic
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # Fzf autocompletion and keybindings
+# Normally added using the install script `$(brew --prefix)/opt/fzf/install`
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-    # Normally added using the install script `$(brew --prefix)/opt/fzf/install`
+
